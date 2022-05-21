@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<title>用户登录</title>
+	<link rel = "stylesheet" href = "./css/login.css">
+	<script src = "jQuery.js"></script>
+</head>
+<body>
+   <div class="container">
+	   <div class="logo"></div>
+	   <form action = "#" id="login_form">
+		   <div class="nav_Tab" id="tab_nav" >
+			   <label  class="tab_btn" >
+				   <radio name="myradio" id="tab-mob" value="mob">账号密码登录</radio>
+			   </label>
+			   |
+			   <label  class="tab_btn fa">
+				   <radio name="myradio" id="tab-email" value="email">
+					   手机验证码登录
+				   </radio>
+			   </label>
+		   </div>
+		   <div class="nav_Con" id="tab_con">
+			   <div class="dl_id">
+				   <div class="inp_con">
+					   <input type = "text" id="username" name="username" maxlength="20" placeholder="邮箱/手机号码/用户名">
+				   </div>
+				   <div class="inp_con">
+					   <input type = "password" id="password" name="password" maxlength="16"  minlength="8" placeholder="密码为8-16个字符（数字、大小写字母、符号至少包含三种）">
+				   </div>
+			   </div>
+			   <div class="dl_phone" style="display: none">
+				   <div class="inp_con">
+					   <input type = "text" id="mob" name="mob" maxlength="11" placeholder="手机号码">
+				   </div>
+				   <div class="inp_con">
+					   <input type = "text" id="mob_Val_Code" name="mob_Val_Code" maxlength="4" placeholder="请输入手机验证码">
+					   <input type="button" value="获取验证码" class="btn-code" id="btn-code-mob" onclick="ck()">
+				   </div>
+			   </div>
+		   </div>
+		   <button id="login_btn">立即登录</button>
+		   <div class="register">
+			   <a href = "./register.html">注册新账号</a>
+			   <span>|</span>
+			   <a href = "./find-password.html" style="color: #34383d;">忘记密码?</a>
+		   </div>
+		   <div class="other_login">
+			   <span>其他方式登录：</span>
+			   <div class="login_icon">
+				   <a href = "#" class="qq"></a>
+				   <a href = "#" class="weibo"></a>
+				   <a href = "#" class="zfb"></a>
+				   <a href = "#" class="wechat"></a>
+			   </div>
+		   </div>
+	   </form>
+   </div>
+    <footer>
+	     <div class="footer_info" >
+		     <p class="copyright_info">
+			     2012-2021 努比亚 版权所有
+			     <a href = "#">粤ICP备18069660号-3</a>
+			     ICP经营许可证编号：粤B2-20120688
+			     <a href = "#" style="margin-right: 5px;margin-left: 3px;}">
+				     <img src = "./images/government.png" style="" alt = "">
+			     </a>
+			     深圳市努比亚信息技术有限公司
+		     </p>
+	     </div>
+    </footer>
+</body>
+</html>
+<script>
+	function tab(tab_nav,hover,tab_con,number) {
+		 number=(typeof(number)=='undefined') ? 0: number;
+	   $('#tab_nav label').eq(number).addClass(hover).siblings("label").removeClass(hover);
+		 $('#'+tab_con+'>div').eq(number).show().siblings('div').hide();
+		 
+		 let $div_label = $('#tab_nav label');
+		 $div_label.click(function () {
+			 $(this).addClass(hover).siblings('label').removeClass(hover);
+			 $('#'+tab_nav+' radio').removeAttr('checked','checked');
+			 let index = $div_label.index(this);
+			 $('#'+tab_nav+' radio').eq(index).attr('checked','checked');
+			 $('#'+tab_con+'>div').eq(index).show().siblings('div').hide();
+		 })
+	}
+	tab('tab_nav','fa','tab_con',0);
+	
+	function ck () {
+		confirm("抱歉,无法发送验证码!");
+	}
+	
+	let btn = document.querySelector("#login_btn");
+	btn.addEventListener('click',()=>{
+		confirm('请检查网络设置,登录失败');
+	})
+</script>
